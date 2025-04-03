@@ -1,0 +1,120 @@
+{% extends "core/base.html" %}
+
+{% block title %}Dashboard - HR Module{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4 fw-bold text-primary">Welcome to HR Dashboard</h2>
+    
+    <div class="row">
+        <!-- Statistik Card -->
+        <div class="col-md-4">
+            <div class="card text-dark bg-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-secondary">Total Employees</h5>
+                    <p class="card-text fs-4 fw-bold text-primary">120</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card text-dark bg-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-secondary">On Time Attendance</h5>
+                    <p class="card-text fs-4 fw-bold text-success">85%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-dark bg-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-secondary">Pending Payroll</h5>
+                    <p class="card-text fs-4 fw-bold text-danger">5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grafik Section -->
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card p-3">
+                <h5 class="text-secondary fw-bold">Payroll Trend</h5>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="text-secondary fw-bold">Employee Distribution</h5>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="text-secondary fw-bold">Attendance Trend</h5>
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // Grafik Bar - Payroll Trend
+        var ctx3 = document.getElementById('barChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Payroll (in Juta IDR)',
+                    data: [50, 55, 60, 58, 65, 70],
+                    backgroundColor: '#8a75ff'
+                }]
+            }
+        });
+
+        // Grafik Pie - Employee Distribution
+        var ctx1 = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['HR', 'IT', 'Finance', 'Marketing'],
+                datasets: [{
+                    label: 'Employees',
+                    data: [30, 40, 25, 25],
+                    backgroundColor: ['#6a5acd', '#8a75ff', '#FF6384', '#36A2EB']
+                }]
+            }
+        });
+
+        // Grafik Line - Attendance Trend
+        var ctx2 = document.getElementById('lineChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Attendance (%)',
+                    data: [80, 85, 83, 88, 90, 87],
+                    backgroundColor: 'rgba(106, 90, 205, 0.2)',
+                    borderColor: '#6a5acd',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            }
+        });
+
+        
+    });
+</script>
+
+{% endblock %}
