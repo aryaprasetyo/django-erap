@@ -1,0 +1,16 @@
+## Install python venv
+apt install python3.10-venv
+
+## bikin venv
+python3 -m venv env
+
+## aktifin venv
+source env/bin/activate
+
+## install django
+pip install django
+
+## run django service
+python manage.py runserver 0.0.0.0:8000
+
+
