@@ -41,3 +41,9 @@ pip install django-bootstrap4
 
 ## trus coba run django nya
 python .\manage.py runserver
+
+
+## GENERAL INFO
+## hapus track .env or env/
+git rm -r --cached env/
+
