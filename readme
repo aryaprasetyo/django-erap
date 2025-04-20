@@ -13,4 +13,15 @@ pip install django
 ## run django service
 python manage.py runserver 0.0.0.0:8000
 
+## on Windows Host
+## to check registry policy on windows poweshell
+Get-ExecutionPolicy
+
+## set aja policy ke allowed dlu, hit 'Y' or 'A' to confirm all
+Set-ExecutionPolicy RemoteSigned
+
+## baru deh nyalain venv
+.\env\Scripts\activate
+
+## trus coba run django nya
 
