@@ -13,6 +13,9 @@ pip install django
 ## run django service
 python manage.py runserver 0.0.0.0:8000
 
+
+
+## WINDOWS HOST ONLY
 ## on Windows Host
 ## to check registry policy on windows poweshell
 Get-ExecutionPolicy
@@ -20,8 +23,21 @@ Get-ExecutionPolicy
 ## set aja policy ke allowed dlu, hit 'Y' or 'A' to confirm all
 Set-ExecutionPolicy RemoteSigned
 
+
+## bersih2 venv lama
+Remove-Item -Recurse -Force env
+
+## bikin venv baru
+python -m venv env
+
 ## baru deh nyalain venv
 .\env\Scripts\activate
 
-## trus coba run django nya
+## install django
+pip install django
 
+## install rewquirements harusnya
+pip install django-bootstrap4
+
+## trus coba run django nya
+python .\manage.py runserver
