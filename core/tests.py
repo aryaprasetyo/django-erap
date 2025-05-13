@@ -8,4 +8,4 @@ class DashboardViewTest(TestCase):
     def test_dashboard_accessible(self):
         response = self.client.get(reverse('dashboard'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Welcome to HR Dashboard")
+        self.assertContains(response, "Welcome to HR Dashboard -Pipeline #1")
