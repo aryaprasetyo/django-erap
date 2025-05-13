@@ -15,13 +15,13 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'pip3 install -r requirements.txt'
+                sh 'pip3 install flake8'
             }
         }
 
         
         stage('Code Linting/Analysis') {
             steps {
-                sh 'pip3 install flake8'
                 sh 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
             }
         }
