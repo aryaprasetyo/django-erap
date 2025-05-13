@@ -64,5 +64,16 @@ pipeline {
         //        }
         //    }
         //}
+
+        stage('Deploy Container') {
+            steps {
+                sh '''
+                    docker stop django-app || true
+                    docker rm django-app || true
+                    docker run -d --name django-app -p 8000:8000 adhari1720/django-app:latest
+                '''
+            }
+        }
+
     }
 }
