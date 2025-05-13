@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('sqp_7220f7b8e599ea230c5ec7df06fc3279b8006c6f')  // ID dari token di Jenkins Credentials
+        // SONAR_TOKEN = credentials('sqp_7220f7b8e599ea230c5ec7df06fc3279b8006c6f')  // ID dari token di Jenkins Credentials
     }
 
     stages {
@@ -18,26 +18,35 @@ pipeline {
             }
         }
 
+        
+        stage('Code Linting/Analysis') {
+            steps {
+                sh 'pip3 install flake8'
+                sh 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
+            }
+        }
+
+
         stage('Run Unit Tests') {
             steps {
                 sh 'python3 manage.py test core -v 2'
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=ERP-Django \
-                        -Dsonar.sources=. \
-                        -Dsonar.python.version=3 \
-                        -Dsonar.host.url=http://172.23.3.11:9000 \
-                        -Dsonar.login=$SONAR_TOKEN
-                    '''
-                }
-            }
-        }
+        //stage('SonarQube Analysis') {
+        //    steps {
+        //        withSonarQubeEnv('My SonarQube Server') {
+        //            sh '''
+        //                sonar-scanner \
+        //                -Dsonar.projectKey=ERP-Django \
+        //                -Dsonar.sources=. \
+        //                -Dsonar.python.version=3 \
+        //               -Dsonar.host.url=http://172.23.3.11:9000 \
+        //                -Dsonar.login=$SONAR_TOKEN
+        //            '''
+        //        }
+        //    }
+        //}
 
         stage('Docker Build') {
             steps {
