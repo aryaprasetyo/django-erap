@@ -54,15 +54,15 @@ pipeline {
             }
         }
 
-        stage('Docker Push') {
-            steps {
-                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_PASS')]) {
-                    sh '''
-                        echo $DOCKER_PASS | docker login -u adhari1720 --password-stdin
-                        docker push adhari1720/django-app:latest
-                    '''
-                }
-            }
-        }
+        //stage('Docker Push') {
+        //    steps {
+        //        withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_PASS')]) {
+        //            sh '''
+        //                echo $DOCKER_PASS | docker login -u adhari1720 --password-stdin
+        //                docker push adhari1720/django-app:latest
+        //            '''
+        //        }
+        //    }
+        //}
     }
 }
