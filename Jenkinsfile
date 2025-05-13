@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
+    //environment {
         // SONAR_TOKEN = credentials('sqp_7220f7b8e599ea230c5ec7df06fc3279b8006c6f')  // ID dari token di Jenkins Credentials
-    }
+    //}
 
     stages {
         stage('Checkout Code') {
